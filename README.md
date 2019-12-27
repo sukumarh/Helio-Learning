@@ -18,3 +18,10 @@ We intend to use machine learning to predict this quantity using inputs from in-
 ### Labels and Features
 1. Labels: **Hall Conductance**, **Pedersen Conductance**
 2. Features: **Field Aligned Currents**, **Latitude**, **MLT**
+
+### Authors
+* **Sukumar Hakhoo** - [sukumarh](https://github.com/kuramus)
+
+### Built With
+* [PyCharm 2019](https://visualstudio.microsoft.com/vs/)
+* [Jupyter Notebook](https://jupyter.org/)
