@@ -11,30 +11,12 @@ from Helper_Functions import Plotting_Ops as Plotter
 def non_linear_reg_using_SVR(X, y, configs):
 
     # Fitting the SVR regression model
-    # svr_rbf = SVR(kernel='rbf', C=1000, gamma=8, epsilon=0.001)
-    # svr_rbf_2 = SVR(kernel='rbf', C=100, gamma=4, epsilon=0.001, coef0=1)
-    # svr_poly = SVR(kernel='poly', C=100, gamma=5, degree=5, epsilon=.01,
-    #                coef0=1)
-    # svr_sig = SVR(kernel='sigmoid', C=10, gamma='auto', epsilon=.01,
-    #                coef0=1)
-
-    # svrs = [svr_rbf, svr_lin, svr_poly]
-    # kernel_label = ['RBF', 'Linear', 'Polynomial']
-    # model_color = ['m', 'c', 'g']
-
-    # svrs = [svr_rbf, svr_rbf_2, svr_poly]
-    # kernel_label = ['RBF', 'RBF 2', 'Polynomial']
-    # model_color = ['m', 'g', 'c']
-
-    # svr_estimator = SVR(coef0=1, gamma='auto')
     svr_estimator = SVR(coef0=1)
-
     clf = Tuning.Hyper_parameter_tuning(X, y, svr_estimator, configs)
 
     print('Hyper-parameter tuning completed')
 
     kernel_label = clf.best_params_['kernel']
-
     print(f'Best parameters are: {clf.best_params_}')
     print(f'Best score is: {clf.best_score_}')
 
@@ -48,9 +30,6 @@ def non_linear_reg_using_SVR(X, y, configs):
     Plotter.plot_svr(X, y_hat, y, kernel_label, 'm', 'r', svr)
 
     return clf, svr
-
-    # Plotter.plot_svr_multi(X, y, kernel_label, model_color, svrs,
-    # n_rows=1, n_cols=3, fig_size=(15, 5))
 
 
 def non_linear_reg_using_SVR_dataset_splitted(X, y, configs):
@@ -69,21 +48,15 @@ def non_linear_reg_using_SVR_dataset_splitted(X, y, configs):
     print(f'Best parameters for negatives are: {best_neg_params}')
     print(f'Best score for negatives are: {clf_neg.best_score_}')
 
-    # best_params = {'C': 1000, 'degree': 9, 'epsilon': 1, 'gamma': 20, 'kernel': 'poly'}
-
     kernel_label = [best_neg_params['kernel'], best_pos_params['kernel']]
     model_color = ['m', 'g']
 
     svr_pos_best = SVR(kernel=best_pos_params['kernel'], C=best_pos_params['C'],
-                       # gamma=best_pos_params['gamma'],
                        epsilon=best_pos_params['epsilon'],
                        degree=best_pos_params['degree'], coef0=1)
     svr_neg_best = SVR(kernel=best_neg_params['kernel'], C=best_neg_params['C'],
-                       # gamma=best_neg_params['gamma'],
                        epsilon=best_neg_params['epsilon'],
                        degree=best_neg_params['degree'], coef0=1)
-
-    # plot_svr(X, y, kernel_label, model_color, [svr_pos_best, svr_neg_best])
 
     Plotter.plot_svr_combined([X_neg, X_pos], [y_neg, y_pos],
                       kernel_label, model_color,
@@ -97,12 +70,10 @@ def main():
     # Read data file
     print("Reading the data file: Trial - AMIE")
 
-    start_time = dt.datetime(2003, 1, 1, 0, 0, 0)  # Start Time
-    stop_time = dt.datetime(2003, 1, 2, 0, 0, 0)  # Stop Time
+    start_time = dt.datetime(2003, 1, 1, 0, 0, 0)
+    stop_time = dt.datetime(2003, 1, 2, 0, 0, 0)
 
     file_name = 'Data/SingleDay/b20031001n.save'
-
-    # fac_train, hal_train = read_file(16, 0, start_time, stop_time, file_name, mode='Hall')
 
     fac_train, hal_train = File_IO.read_single_file(16, 0,
                                                     file_name,
@@ -111,38 +82,6 @@ def main():
     print('Data read complete.')
 
     # Hyper-parameter tuning configurations
-    # SVR_configs = [{'kernel': 'rbf',
-    #                 'gamma': [20, 10, 8, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
-    #                 'epsilon': [0.001, 0.01, 0.1, 1, 10]},
-    #                {'kernel': 'sigmoid',
-    #                 'gamma': [20, 10, 8, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
-    #                 'epsilon': [0.001, 0.01, 0.1, 1, 10]},
-    #                {'kernel': 'poly',
-    #                 'gamma': [20, 10, 8, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
-    #                 'epsilon': [0.001, 0.01, 0.1, 1, 10],
-    #                 'degree': [2, 3, 4, 5, 6, 7, 8, 9]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20, 10, 8, 1,  1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                   'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    #                   'epsilon': [0.001, 0.01, 0.1, 1],
-    #                   'degree': [1, 2, 3, 4, 5, 6, 7, 8]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20, 10, 8, 1, 1e-1, 1e-2],
-    #                   'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    #                   'epsilon': [0.001, 0.01, 0.1, 1],
-    #                   'degree': [1, 2, 3, 4, 5, 6, 7, 8]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20, 10],
-    #                   'C': [10, 100],
-    #                   'epsilon': [0.1, 1],
-    #                   'degree': [1,2,3,4,5]}]
-
     SVR_configs_2 = [{'kernel': ['poly', 'rbf'],
                       'gamma': [20, 10, 0.1, 1e-2, 1e-3, 1e-4, 'auto'],
                       'C': [10, 1, 0.1, 0.01],

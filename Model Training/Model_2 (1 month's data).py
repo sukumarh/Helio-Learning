@@ -101,12 +101,6 @@ def main():
 
     print('Data read complete.')
 
-    # SVR_configs = [{'kernel': ['poly', 'rbf'],
-    #                 'gamma': [20, 15, 10, 0.1, 1e-2, 'auto'],
-    #                 'C': [20, 15, 10, 1, 0.1],
-    #                 'epsilon': [0.2, 0.1, 0.05, 0.01],
-    #                 'degree': [2, 3, 4, 5, 6, 7]}]
-
     SVR_configs = [{'kernel': ['poly'],
                     'gamma': [20, 15, 10, 0.1, 1e-2, 'auto'],
                     'C': [20, 15, 10, 1, 0.1],
@@ -118,63 +112,6 @@ def main():
                                         SVR_configs)
 
     File_IO.save_model('Trained_Models/svr_1_month_2.p', ['Non_Linear_Reg_SVR_Tuned', [clf, svr]])
-
-    # clf_neg, clf_pos, svr_pos_best, svr_neg_best = Non_Linear_Reg_SVR_Tuned_Splitted_Dataset(X_train,
-    #                                                                                          y_train,
-    #                                                                                          SVR_configs)
-    #
-    # File_IO.save_model('Trained_Models/svr_1_month_4.p', ['Non_Linear_Reg_SVR_Tuned_Splitted_Dataset',
-    #                                                       [clf_neg, clf_pos, svr_pos_best, svr_neg_best]])
-
-    # single_svr(X_train, y_train)
-
-    # Hyper-parameter tuning configurations
-    # SVR_configs = [{'kernel': 'rbf',
-    #                 'gamma': [20, 10, 8, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
-    #                 'epsilon': [0.001, 0.01, 0.1, 1, 10]},
-    #                {'kernel': 'sigmoid',
-    #                 'gamma': [20, 10, 8, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
-    #                 'epsilon': [0.001, 0.01, 0.1, 1, 10]},
-    #                {'kernel': 'poly',
-    #                 'gamma': [20, 10, 8, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000],
-    #                 'epsilon': [0.001, 0.01, 0.1, 1, 10],
-    #                 'degree': [2, 3, 4, 5, 6, 7, 8, 9]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20, 10, 8, 1,  1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
-    #                   'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    #                   'epsilon': [0.001, 0.01, 0.1, 1],
-    #                   'degree': [1, 2, 3, 4, 5, 6, 7, 8]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20, 10, 8, 1, 1e-1, 1e-2],
-    #                   'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    #                   'epsilon': [0.001, 0.01, 0.1, 1],
-    #                   'degree': [1, 2, 3, 4, 5, 6, 7, 8]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20, 10],
-    #                   'C': [10, 100],
-    #                   'epsilon': [0.1, 1],
-    #                   'degree': [1,2,3,4,5]}]
-
-    # SVR_configs_2 = [{'kernel': ['rbf', 'poly'],
-    #                   'gamma': [20],
-    #                   'C': [100],
-    #                   'epsilon': [1],
-    #                   'degree': [1, 2, 3]}]
-
-    # SVR_configs_2 = [{'kernel': ['poly', 'rbf'],
-    #                   'gamma': [20, 10, 0.1, 1e-2, 1e-3, 'auto'],
-    #                   'C': [10, 1, 0.1, 0.01],
-    #                   'epsilon': [0.1, 0.01, 0.001],
-    #                   'degree': [1, 2, 3, 4, 5]}]
-
-    # clf_neg, clf_pos = non_linear_reg_using_SVR_dataset_splitted(fac_train, hal_train,
-    #                                                              SVR_configs_2)
 
 
 if __name__ == '__main__':
