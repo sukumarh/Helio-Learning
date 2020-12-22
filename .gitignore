@@ -132,3 +132,5 @@ dmypy.json
 Data
 
 sample_code
+TestCode/
+.idea
