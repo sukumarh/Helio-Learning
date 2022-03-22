@@ -20,7 +20,8 @@ We intend to use machine learning to predict this quantity using inputs from in-
 2. Features: **Field Aligned Currents**, **Latitude**, **MLT**
 
 ### Authors
-* **Sukumar Hakhoo** - [sukumarh](https://github.com/kuramus)
+* **Sukumar Hakhoo** - [sukumarh](https://github.com/sukumarh)
+* **Agnit Mukhopadhyay** - [agnitm](https://github.com/agnitm)
 
 ### Built With
 * [PyCharm 2019](https://visualstudio.microsoft.com/vs/)
